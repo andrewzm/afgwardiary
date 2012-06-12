@@ -1,4 +1,4 @@
 afgwardiary
 ===========
 
-Replication code for the AWD paper (PNAS)
+Replication code for the AWD paper (PNAS) - test
