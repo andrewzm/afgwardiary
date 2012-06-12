@@ -1,0 +1,26 @@
+<MapWinGIS OcxVersion="4.8" FileType="LayerFile" FileVersion="0" Description="">
+  <Layer LayerType="Shapefile" LayerName="07_03_settlements" LayerVisible="1" LayerKey="" Filename="">
+    <ShapefileClass>
+      <DefaultDrawingOptions FillColor="7573603" LineColor="9868950" PointSize="20.000000" />
+      <ShapefileCategoriesClass ClassificationField="4" FieldType="2">
+        <ShapefileCategoryClass Name="0" Expression="[TYPE] = 0" Value="0.000000">
+          <ShapeDrawingOptionsClass FillColor="9116880" FillColor2="9116880" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="1" Expression="[TYPE] = 1" Value="1.000000">
+          <ShapeDrawingOptionsClass FillColor="14333681" FillColor2="14333681" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="2" Expression="[TYPE] = 2" Value="2.000000">
+          <ShapeDrawingOptionsClass FillColor="16250871" FillColor2="16250871" LineColor="9868950" PointSize="16.000000" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="3" Expression="[TYPE] = 3" Value="3.000000">
+          <ShapeDrawingOptionsClass FillColor="8839608" FillColor2="8839608" LineColor="9868950" PointNumSides="6" PointShapeType="1" PointSize="28.000000" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="4" Expression="[TYPE] = 4" Value="4.000000">
+          <ShapeDrawingOptionsClass FillColor="2534477" FillColor2="2534477" LineColor="9868950" />
+        </ShapefileCategoryClass>
+      </ShapefileCategoriesClass>
+      <LabelsClass Alignment="5" Generated="0" AutoOffset="0" AvoidCollisions="0" Positioning="0" TextRenderingHint="5" />
+      <ChartsClass ValuesFontName="" />
+    </ShapefileClass>
+  </Layer>
+</MapWinGIS>

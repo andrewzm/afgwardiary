@@ -1,0 +1,1 @@
+Main file for analyzing fixed effects is Correlation_tests.m. Read the instructions to make sure all dependencies are satisfied before running.

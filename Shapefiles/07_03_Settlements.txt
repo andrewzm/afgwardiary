@@ -1,0 +1,138 @@
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Originator: Afghanistan Information Management Service(AIMS)
+      Publication_Date: 1997
+      Title: Settlements of Afghanistan
+      Geospatial_Data_Presentation_Form: Vector digital data
+      Publication_Information:
+        Publication_Place: Islamabad, Pakistan
+        Publisher: Afghanistan Information Management Service(AIMS)
+      Online_Linkage: <http://www.aims.org.af/home/sroots.asp?seckeyz=z2&secido=2&seckeyt=a10>
+  Description:
+    Abstract: Settlements of Afghanistan were digitized by the United State Agency for International Development (USAID) using United States Defense Mapping Agency (USDMA; 1967-1988) at scale of 1:100,000, using  Atlas GIS software.  The dates for this process took place sometime in 1994 in Peshawar, Pakistan.  There are about 31230 settlements (villages) in the layer and this number may increase because various UN agencies and Afghan Government have different number of settlements that varies from 30,000 to 45,000.  In addition, The majority of the geographic locations of these villages are not in correct location due to the fact that villages moved or abandoned because of the war, tribunal disputes and drought.  In addition, the village were digitized incorrectly because lack of Cartographic experience.   Afghanistan Information Management Service (AIMS) is in the process of correcting the geographic location of villages by comparing the villages to the Russian 1:50,000 scale topos.  In addition, the AIMS office has verified many of these settlements when certain Non Governmental Organizations (NGO) brought Global Positioning System (GPS) settlement points to AIMS office.  These settlement have geocodes and these geocodes will change when AIMS adopts the new provincial and district administrative boundaries. 
+    Purpose: Settlements of Afghanistan are the basis for village location, which were mapped at 1:100,000 scale. Due to the scale this layer could be utilized in general planning.
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Single_Date/Time:
+        Calendar_Date: 1997-2004
+    Currentness_Reference: Source Dates
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: As needed
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: 60
+      East_Bounding_Coordinate: 75
+      North_Bounding_Coordinate: 39
+      South_Bounding_Coordinate: 29
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: Settlements
+      Theme_Keyword: Afghanistan Settlements
+      Theme_Keyword: Villages
+      Theme_Keyword: Town
+    Place:
+      Place_Keyword: Afghanistan
+      Place_Keyword: Kabul
+      Place_Keyword: Afghanistan Information Management Service (AIMS)
+  Access_Constraints: Secondary distribution by permission only. Please visit Afghanistan Information Management Service (AIMS) office for permission. Any secondary distribution must have this documentation appended.
+  Use_Constraints:
+    Users must assume responsibility in determining the usability of this data for their purposes. Digital maps retain the accuracy of their source materials. In the use of Afghanistan Information Management Service (AIMS)GIS data, please check sources, scale, accuracy, currentness and other available information. Please confirm that you are using the most recent copy of both data and metadata from the AIMS GIS Data Catalog. The office of AIMS provides notice of updates and corrections directly to the AIMS GIS Technical Group.
+
+    AIMS is not responsible for local edits to data or metadata. Updates, corrections, and feedback, incorporated in the AIMS GIS database are made in accordance with "Data Standards for AIMS Geographic Information Systems".
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Zohra Sulaiman
+        Contact_Organization: Afghanistan Information Management Service (AIMS)
+      Contact_Position: Staff Assistant
+      Contact_Address:
+        Address_Type: Mailing and Physical Address
+        Address:
+          UNDP/AIMS Salang Watt
+          Next to Inhesarat
+          House No.12
+        City: Kabul
+        State_or_Province: Kabul
+        Postal_Code: PO Box 005
+        Country: Afghanistan
+      Contact_Voice_Telephone: 00-93(0)70-248827
+      Contact_Facsimile_Telephone: None
+      Contact_Electronic_Mail_Address: info@aims.org.af
+      Hours_of_Service: Sunday through Thursday 0800 - 1700 (GMT +4:30)
+  Native_Data_Set_Environment: Tkme, standard software for Metadata creation provided by United States Geological Survey (USGS)
+Data_Quality_Information:
+  Attribute_Accuracy:
+  Completeness_Report: Data set is complete
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: United States Agency for International Development(USAID)
+          Publication_Date: 1990
+          Title: Settlements of Afghanistan
+          Geospatial_Data_Presentation_Form: Vector Digital Data
+          Series_Information:
+          Publication_Information:
+          Online_Linkage: <http://www.aims.org.af/home/sroots.asp?seckeyz=z2&secido=2&seckeyt=a10>
+      Type_of_Source_Media: Vector Digital Data
+    Process_Step:
+      Process_Description: Settlements of Afghanistan, contains Settlement(villages)for Afganistan. The shapefile has point topology and was created in Atlas for GIS software then converted to ArcView 3.x shapefile. Shapefile attributes were carefully examined for accuracy based on existing source material (United States Defense Mapping Agency (USDMA)1:100,000 scale topo maps). On continuing basis, Afghanistan Information Management Service (AIMS)is in progress of correcting the locations of the settlements utilizing Russian 1:50,000 scale topos and Global Positioning System (GPS) readings that various Non Governmental Organization have brought to the AIMS office.
+      Process_Date: 1990
+Spatial_Data_Organization_Information:
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: Point
+      Point_and_Vector_Object_Count: 31230 record
+  Raster_Object_Information:
+    Raster_Object_Type: None
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition:
+    Geographic:
+      Latitude_Resolution: 0.000000
+      Longitude_Resolution: 0.000000
+      Geographic_Coordinate_Units: Decimal Degrees
+    Geodetic_Model:
+      Horizontal_Datum_Name: WGS84
+Entity_and_Attribute_Information:
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: 07_03_Settlements
+Distribution_Information:
+  Resource_Description: Downloadable Data
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: Environmental Systems Research Institute, Inc. (ESRI), Shapefile
+        Transfer_Size: 29.4MB
+Metadata_Reference_Information:
+  Metadata_Date: 17/02/2005
+  Metadata_Review_Date: None
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Ahmad Munir Qureshi
+        Contact_Organization: Afghanistan Information Management Service (AIMS)
+      Contact_Position: Geographic Information System (GIS) Assistant
+      Contact_Address:
+        Address_Type: Mailing and Physical Address
+        Address: Next to Inhisarat Salang Watt.
+        City: Kabul
+        State_or_Province: Kabul
+        Postal_Code: Central Post Office Box No 005
+        Country: Afghanistan
+      Contact_Voice_Telephone: 00-93(0)79347536
+      Contact_Electronic_Mail_Address: ahmad.qureshi@aims.org.af
+      Hours_of_Service: Sunday through Thursday 0800 - 1700hrs (GMT +4:30)
+  Metadata_Standard_Name: AIMS Mapping Standard Metadata
+  Metadata_Standard_Version: AIMS-STD-001-2004
+  Metadata_Time_Convention: Local Time
+  Metadata_Extensions:
+    Online_Linkage: <http://www.aims.org.af/home/sroots.asp?seckeyz=z2&secido=2&seckeyt=a10>
+    Profile_Name: AIMS Mapping Standard Metadata
+    
+The geodata, maps and shapefiles found on the MapCruzin.com website may come from a variety of government and private sources. While we try to assure the accuracy of this material, we cannot promise that it is absolutely accurate. We do promise that using this will be fun, entertaining or educational. Beyond this, we make no guarantee as to its suitability for any purpose. We assume no liability or responsibility for errors or inaccuracies. Please understand that you use this at your own risk. 
+
+Visit mapcruzin.com for more free shapefiles, maps, GIS software, tools and resources.

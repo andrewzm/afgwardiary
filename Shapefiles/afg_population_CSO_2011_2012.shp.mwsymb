@@ -1,0 +1,32 @@
+<MapWinGIS OcxVersion="4.8" FileType="LayerFile" FileVersion="0" Description="">
+  <Layer LayerType="Shapefile" LayerName="afg_population_CSO_2011_2012" LayerVisible="1" LayerKey="" Filename="">
+    <ShapefileClass>
+      <DefaultDrawingOptions FillColor="14663884" FillTransparency="104.000000" LineColor="9868950" />
+      <ShapefileCategoriesClass>
+        <ShapefileCategoryClass Name="0 - 13.827" Expression="[POP_DEN] &gt;= 0.000000 AND [POP_DEN] &lt; 13.827000">
+          <ShapeDrawingOptionsClass FillColor="15128749" FillColor2="15128749" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="13.827 - 23.341" Expression="[POP_DEN] &gt;= 13.827000 AND [POP_DEN] &lt; 23.341000">
+          <ShapeDrawingOptionsClass FillColor="12636346" FillColor2="12636346" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="23.341 - 35.486" Expression="[POP_DEN] &gt;= 23.341000 AND [POP_DEN] &lt; 35.486000">
+          <ShapeDrawingOptionsClass FillColor="10143688" FillColor2="10143688" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="35.486 - 56.497" Expression="[POP_DEN] &gt;= 35.486000 AND [POP_DEN] &lt; 56.497000">
+          <ShapeDrawingOptionsClass FillColor="7585750" FillColor2="7585750" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="56.497 - 1.23k" Expression="[POP_DEN] &gt;= 56.497000 AND [POP_DEN] &lt; 1229.132000">
+          <ShapeDrawingOptionsClass FillColor="5093091" FillColor2="5093091" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="1.23k - 13.83k" Expression="[POP_DEN] &gt;= 1229.132000 AND [POP_DEN] &lt; 13826.557000">
+          <ShapeDrawingOptionsClass FillColor="2600689" FillColor2="2600689" LineColor="9868950" />
+        </ShapefileCategoryClass>
+        <ShapefileCategoryClass Name="13.83k - 13.83k" Expression="[POP_DEN] &gt;= 13826.557000 AND [POP_DEN] &lt;= 13827.000000">
+          <ShapeDrawingOptionsClass FillColor="42495" FillColor2="42495" LineColor="9868950" />
+        </ShapefileCategoryClass>
+      </ShapefileCategoriesClass>
+      <LabelsClass Generated="0" AutoOffset="0" AvoidCollisions="0" Positioning="1" TextRenderingHint="5" />
+      <ChartsClass ValuesFontName="" />
+    </ShapefileClass>
+  </Layer>
+</MapWinGIS>
