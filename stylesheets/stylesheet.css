@@ -430,3 +430,8 @@ Small Device Styles
   }
 
 }
+
+.authors a{
+    float:left;
+    clear:left;
+}
