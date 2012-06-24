@@ -4,7 +4,7 @@
 # 
 # Requires: the below packages + the datasets acledData, gtdData and origData (enclosed)
 #	    
-# Please set the current working directory to the parent directory of where this file resides.
+# Please set the current working directory to the parent directory of where this file resides. Output pngs are saved in child directory.
 
 # Packages
 library(rgdal)		# for spTransform
@@ -14,7 +14,7 @@ library(maptools)
 library(ggplot2)
 library(RecordLinkage)
 
-Extractdata = F  # If you wish to extract the data from source you will need to get the raw data from the websites listed in the paper. 
+Extractdata = F  # If you wish to extract the data from source you will need to obtain the raw data. 
 
 if (Extractdata == T) { 
 
