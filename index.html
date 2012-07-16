@@ -39,9 +39,80 @@
       <section id="main_content" class="inner">
         <p></p>
 
-To appear after publication.
+<h1>Point process modelling of the Afghan War Diary</h1>
 
-    
+<p>Welcome to the project page relating to the work published on point process modelling of the WikiLeaks data set, the Afghan War Diary (AWD). The paper titled "Point process modelling of the Afghan War Diary" was published in the Proceedings of the National Academy of Sciences of the United States of America (PNAS) on July 2012. The official link to the paper is <a href="http://www.pnas.org">here</a>. The main purpose of this page is to supplement the interested reader with (even further) information and provide a <a href="https://github.com/andrewzm/afgwardiary">link</a>  to all the code required to replicate the results presented in the paper. You will need MATLAB 7.9 (2009b) or higher for most of the programs and R software package for the corroboration results (SI Text S5). In addition you will frequently require the Matlab Mapping and Statistical toolboxes; in the main files, dependencies are listed at the top of the scripts. </p>
+
+<h3>Paper abstract</h3>
+
+<p>Modern conflicts are characterised by an ever increasing use of information and sensing technology, resulting in vast amounts of high resolution data. Modelling and prediction of conflict, however, remains a challenging task due to the heterogeneous and dynamic nature of the data typically available. Here we propose the use of dynamic spatiotemporal modelling tools for the identification of complex underlying processes in conflict, such as diffusion, relocation, heterogeneous escalation and volatility. Using ideas from statistics, signal processing and ecology, we provide apredictive framework able to assimilate data and give confidence estimates on the predictions. We demonstrate our methods on the WikiLeaks Afghan War Diary. Our results show that the approach allows deeper insights into conflict dynamics and allows a strikingly statistically accurate forward prediction of armed opposition group activity in 2010, based solely on data from previous years.</p>
+
+<h3>Summary</h3>
+
+<p>The work brings together ideas from statistics and spatiotemporal modelling and applies them to what can only be described as a highly complex social system. We start off with a very generic equation, the stochastic integro-diifference equation (IDE), in order to capture the dynamics and, more importantly, the uncertainty present in the spatiotemporal evolution of the conflict scenario. The IDE has been previously used in diverse areas, such as ecology, neuroscience and weather prediction, the popularity attributed to its intuitive appeal and also to the ease with which conventional empirical/fully Bayesian methods may be applied for data-driven inference. Unfortunately we do not exploit the IDE to its full, partly because nonparametric methods did not detect any dynamics (such as diffusion) at the scale we are considering; there is ample evidence that such effects would, however, be present at finer resolutions.</p>
+
+<p>The ensuing model we employ is still able to provide insights into the  progression of the conflict in Afghanistan. In particular we estimate parameters relating to the spatially varying growth and volatility of the conflict, (e.g. see figure below) which allow the model to predict, with confidence measures, the evolution of the conflict based on the data in previous years. Interestingly, we show that this uncertainty translates to other characteristics in the conflict scenario. In particular, the predictive distributions of armed opposition group in 2010 (based on data up to 2009) is seen to match closely the distribution of the observed events on a provincial scale. This strongly suggests that, despite the inherent complexity of this social system, uncertainty may be captured extremely well with the use of appropriate stochastic models. For detailed results, please refer to the associated paper. </p>
+
+<p><img src="https://github.com/andrewzm/afgwardiary/raw/master/Main_ResultsSection/AFGGrowthMap.png" alt="Growth in AWD events over the 6 year period 2004-2009" width="100%"></p>
+
+<p>We employ an approximate Bayesian inference approach, variational Bayes, for inferring parameters in the model. Since the free-form variational posteriors are not of standard form we only propagate the first- and second-order moments through Laplace approximations. The ensuing VB-Laplace method has shown to <a href="http://www.mitpressjournals.org/doi/abs/10.1162/NECO_a_00281">compare favourably</a> with state-of-the-art MCMC methods. Despite the skewness, the densities associated with LGCPs of this sort are generally well-behaved; other methods such as INLA and EP may be applied with equal effect.</p>
+
+<p>In line with the work of O'Loughlin et al, we have considered several fixed effects, including elevation, gradient, population density, shortest distance to a major city and the shortest distance to the Pakistan border. We evaluated inclusion of these effects by visualising the variation in the intensity of AWD events with the effect; population density and the shortest distance to a major city were subsequently included in the model. Results showed significant association of conflict with both effects (positively and negatively respectively).</p>
+
+<h3>Replication code</h3>
+
+<p>All relevant code can be downloaded in a tar.gz or .zip format from the links at the top of this page (download size is 200Mb). Alternatively visit <a href="https://github.com/andrewzm/afgwardiary">here</a> and download the relevant code bits you are interested in. Code copyright is supplied under the Simplified BSD License, please refer to the <a href="https://raw.github.com/andrewzm/afgwardiary/master/license.txt">license</a> before use and redistribution.</p>
+
+<h3>Related work/links</h3>
+
+<p>The origins of this work date back to July 2010 when Michael Dewar uploaded a video with a <a href="http://vimeo.com/14200191">spatiotemporal heat map</a>  of the conflict intensity in Afghanistan with data extracted from the Afghan War Diary. His work is, in fact, only part of the extensive efforts by <a href="https://github.com/drewconway" class="user-mention">@drewconway</a> and company who provided <a href="https://github.com/drewconway/WikiLeaks_Analysis">extensive descriptive summaries</a> of the AWD, all of which ultimately proved extremely valuable in bettering our understanding  of the data. </p>
+
+<p>The methodoligical aspect of this work is described more extensively in a <a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&amp;arnumber=6175154&amp;url=http%3A%2F%2Fieeexplore.ieee.org%2Fstamp%2Fstamp.jsp%3Ftp%3D%26arnumber%3D6175154">recently published IEEE paper</a> which in turn is a development of other work in the research group, most prominently <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=04623135">this paper</a> and <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=04671054">this paper</a>. For an application of the same methodology to a temporal point-process, see <a href="http://www.mitpressjournals.org/doi/abs/10.1162/NECO_a_00156">this paper</a>.</p>
+
+<p>Significant understanding of the WikiLeaks data set from a political perspective was gained through the work of O'Loughlin et al. who also provided several statistical summaries verified through our modelling approach. All details can be found on his <a href="http://www.colorado.edu/ibs/pec/johno/afpak/">project page</a>; replication material is also provied.</p>
+
+<p>Finally, this work would not have been possible without the availability of the data sets. The WikiLeaks AWD is available in numerous places on the web; now it is also supplements the PNAS paper <a href="http://www.pnas.org">here</a>.  In addition we made use of the <a href="http://www.afgnso.org.">ANSO data sets</a>, <a href="www.acleddata.com/">ACLED data sets</a> and <a href="www.start.umd.edu/gtd/">GTD data</a>. We are indebted to the corresponding organisations for making their data freely available to the public. </p>
+
+<h3>Authors</h3>
+
+<p>This project was carried out by:</p>
+
+<p class="author">
+<img src="https://github.com/andrewzm/afgwardiary/raw/master/AuthorPics/Andrew.jpg" alt="Andrew Zammit Mangion" width="20%">
+<br />
+<a href="http://edinburgh.academia.edu/AndrewZammitMangion/">Andrew Zammit Mangion</a>
+</p>
+
+
+<p class="author">
+<img src="https://github.com/andrewzm/afgwardiary/raw/master/AuthorPics/mikedewar.jpg" alt="Mike Dewar" width="20%">
+<br />
+<a href="http://mikedewar.org/">Michael Dewar</a> </p>
+
+<p class="author"><img src="https://github.com/andrewzm/afgwardiary/raw/master/AuthorPics/VisakanKadirkamanathan.jpg" alt="Visakan Kadirkamanathan" width="20%">
+<br />
+<a href="http://www.shef.ac.uk/acse/staff/vk">Visakan Kadirkamanathan</a> </p>
+
+<p class="author"><img src="https://github.com/andrewzm/afgwardiary/raw/master/AuthorPics/GuidoSanguinetti.JPG" alt="Guido Sanguinetti" width="20%">
+<br />
+<a href="http://homepages.inf.ed.ac.uk/gsanguin/">Guido Sanguinetti</a></p>
+
+<p> Please address questions of a technical nature to the first or last author. </p>
+
+<h3>Acknowledgements</h3>
+
+<p>This work was supported in part by PASCAL FP7 NoE, and by a studentship from the University of Sheffield to
+AZ-M. GS is funded by the Scottish Government through the SICSA initiative.  VK acknowledges support from the EPSRC Platform Grant EP/H00453X/1.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Afgwardiary maintained by <a href="https://github.com/andrewzm">andrewzm</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
     
 
