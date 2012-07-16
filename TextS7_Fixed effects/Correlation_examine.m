@@ -1,5 +1,12 @@
 function y = Correlation_examine(int,covariate,intensity,min_intensity)
 
+% Check for association between covariate and intensity
+%
+% Inputs:   int (interval over which to check for association)
+%           covariate (pop. density etc.)
+%           intensity (nonparametric estimate of spatial intensity)
+%           min_intensity (regions in space to consider have to have an intensity greater than min_intensity)
+
 my_mean = zeros(size(int));
 my_std = zeros(size(int));
 my_lowerq = zeros(size(int));

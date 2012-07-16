@@ -1,3 +1,5 @@
+%Spatiotemporal nonparametric intensity estimator
+
 clear all
 close all
 

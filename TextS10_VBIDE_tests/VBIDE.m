@@ -385,38 +385,6 @@ xestpost(:,1) = xestprior(:,1) + K*(y(:,1) - C*xestprior(:,1));
 sigma2estpost(:,:,1) = (eye(Basis.nx) - K*C)*sigma2estprior(:,:,1);
 Estinfo(1).xestpost = xestpost(:,1);
 
-function [lambda] = Diggle(spikes,Constants)
-
-% -------------------------------------------------------------
-% Function Diggle
-% inputs:
-% outputs:
-% Description: The Diggle estimator
-%---------------------------------------------------------------
-
-lambda = zeros(Constants.J,Constants.J,size(spikes,3));
-buff = 8;
-rabs = buff*Constants.ds;
-% rabs = 3.2;
-% buff = rabs/Constants.ds;
-r = buff;
-
-for k = 1:size(spikes,3)
-    frame = spikes(:,:,k);
-    for i = buff:Constants.J-buff
-        for j = buff:Constants.J-buff
-            lambda(j,i,k) = pixincircle(frame,i,j,r)/(pi*rabs^2)/Constants.dt;
-        end
-    end
-    %     contourf(Constants.s1,Constants.s2,lambda(:,:,k))
-    %     hold on
-    %     [rows,cols] = find(spikes(:,:,k));
-    %     plot3(Constants.s1(1,cols),Constants.s2(rows,1),ones(1,sum(sum(spikes(:,:,k)))),'rx','Linewidth',2);
-    %     pause(0.1)
-    %     drawnow;
-    %     hold off
-end
-
 
 function [lambda] = DiggleContSpace(spikes,Constants)
 

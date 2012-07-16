@@ -1,4 +1,3 @@
-
 Pak_border = shaperead('Pakistan/PAK_adm0','UseGeoCoords',true);
 Dist_to_Pak = zeros(size(GRID));
 Pak_lon = Pak_border.Lon(1:end);

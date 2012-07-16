@@ -1,5 +1,18 @@
 function [c,q,quantile_MSE,quantile_bias] = FindQuantiles_from_weights(s,Estinfo,field,Basis)
 
+% Quantile analysis
+%
+% Inputs:   s (vector, elements of which are the side of square)
+%           Estinfo (estimated state)
+%           field (true spatiotemporal field)
+%           Basis (basis functions)
+%
+% Outputs:  c (cumulative score)
+%           q (quantiles)
+%           quantile_MSE (mean square error in quantile plot)
+%           quantile_bias (bias in quantile plot)
+
+
 J = length(s);
 s_sub = linspace(s(1),s(end),25);
 [S1_sub,S2_sub] = meshgrid(s_sub);
