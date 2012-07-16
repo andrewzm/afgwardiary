@@ -38,27 +38,21 @@ Provbounds = shaperead('../Shapefiles/admin2_poly_32.shp','UseGeoCoords',true);
 load('IN')
 
 %--------------------------------
-%FOURTH FIGURE IN TECHNICAL REPORT
 %Growth map estimate
 %--------------------------------
 figure('Position',[100,100,700,600])
-% Getmask2
 c = flipud(hot);
-% ezmillerCart(shift,scale)
 hold on
 test = sum(multiprod(Basis.phi,reshape(Thetainfo(m).thetaest,1,1,Basis.nx)),3);
 test = test.*(test>0);
 test = reshape(test(:).*IN,size(test));
 
-%FACTOR of 6.6 LON Scale = 2, LAT SCALE = 3.3. 100km approx 0.9LAT*1.1LON approx 1
+% exp(z_k+1 - z_k) \approx exp(r)
+% 
 DrawAFGmap
 surfm(strue2,strue1,exp(test))
-% geoshow(ax,s1truevec',s2truevec',test);
 shading interp
 colormap(c)
-% h = colorbar('EastOutside')
-% set(h,'position',[0.68,0.21,0.03,0.25])
-% set(h,'YTick',[]);
 h = colorbar('SouthOutside')
 set(h,'position',[0.5,0.1,0.3,0.03])
 labels=get(h,'xticklabel'); % get the y axis labels
@@ -69,31 +63,24 @@ end
 set(h,'xticklabel',labels_modif);
 
 hold off
-% caxis([0 0.025])
 xlabel('Lon','Fontsize',14)
 ylabel('Lat','Fontsize',14)
 
 print -dpng -r300 GrowthMap.png
 
 %--------------------------------
-%FIFTH FIGURE IN TECHNICAL REPORT
 %Predictability map estimate
 %--------------------------------
 figure('Position',[100,100,700,600])
-% Getmask2
 c = flipud(hot);
-% ezmillerCart(shift,scale)
 hold on
-% test = sum(multiprod(Basis.phi,reshape(1./Thetainfo(m).precisionest,1,1,Basis.nx)),3);
-test = sum(multiprod(Basis.phi,reshape(1./diag(Thetainfo(m).Meanprecmat),1,1,Basis.nx)),3);
+test = sum(multiprod(Basis.phi,reshape(diag(inv(Thetainfo(m).Meanprecmat)),1,1,Basis.nx)),3);
 test = test.*(test>0);
 test = reshape(test(:).*IN,size(test));
 
-%FACTOR of 6.6 LON Scale = 2, LAT SCALE = 3.3. 100km approx 0.9LAT*1.1LON approx 1
 DrawAFGmap
 surfm(strue2,strue1,test)
 
-% geoshow(ax,s1truevec',s2truevec',test);
 shading interp
 colormap(c)
 caxis([0.055,0.07])
@@ -108,8 +95,7 @@ ylabel('Lat','Fontsize',14)
 print -dpng -r600 VolatilityMap_unsrt.png
 
 %--------------------------------
-%INSETS OF FIGURE 4 IN TECHNICAL REPORT
-%Growth map estimate Localised
+%Growth map estimate local figs
 %--------------------------------
 
 % Find mean, median, lower and upper

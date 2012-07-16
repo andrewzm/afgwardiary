@@ -282,11 +282,6 @@ for i = Constants.N-1:-1:1
         popd_eval = 0; distc_eval = 0;
     end
     
-%     Hacky way linearizing around filtered estimated
-%     Sigmadash = inv(inv(Sigmabeta(:,:,i+1)) + myint3(xestpost(:,i+1)));
-%     mudash = xestpost(:,i+1) + Sigmadash*(inv(Sigmabeta(:,:,i+1))*(xbeta(:,i+1) - xestpost(:,i+1)) + sum(beta*phieval,2) - myint2(xestpost(:,i+1)));
-
-%   Proper way
     f = @(xx) -(sum(mu + b(1)*popd_eval + b(2)*distc_eval + beta*phieval'*xx') - myint(xx') - ((xx' - xbeta(:,i+1))'/Sigmabeta(:,:,i+1))*(xx' - xbeta(:,i+1))./2); 
     gradf = @(xx) -(sum(beta*phieval,2)' - myint2(xx')' - xx/Sigmabeta(:,:,i+1) + xbeta(:,i+1)'/Sigmabeta(:,:,i+1));
     mudash = scg(f,xestpost(:,i+1)',options,gradf)';
