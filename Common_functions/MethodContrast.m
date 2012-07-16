@@ -1,5 +1,6 @@
 function [A,l] = MethodContrast(r,g,ktype,epsilon,a0)
 
+% Fit a GRBF to the log-PACF or log-PCCF using the method of contrast
 
 sinterp = [epsilon:0.1:a0];
 ginterp = interp1(r,g,sinterp);

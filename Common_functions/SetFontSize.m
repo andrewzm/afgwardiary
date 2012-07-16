@@ -1,3 +1,5 @@
+% Set plot font size
+
 function y=  SetFontSize(fs)
 
 set( get(gca,'YLabel'),'FontSize',fs); 

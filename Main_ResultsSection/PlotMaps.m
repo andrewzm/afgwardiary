@@ -48,7 +48,7 @@ test = test.*(test>0);
 test = reshape(test(:).*IN,size(test));
 
 % exp(z_k+1 - z_k) \approx exp(r)
-% 
+
 DrawAFGmap
 surfm(strue2,strue1,exp(test))
 shading interp

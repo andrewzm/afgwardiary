@@ -101,6 +101,10 @@ Basisnew = Basis;
 save('AFGBasis','Basis')
 
 function [phi] = LocalisedKernelPhi(s1,s2,mu1,mu2,sigma21,sigma22)
+
+% Evaluate the CGRBF centred on (mu1,mu2) with stds (sigma21,sigma22) on
+% vectors (s1,s2).
+
 s1 = s1(1,:);
 s2 = s2(:,1);
 J = size(s1,2);

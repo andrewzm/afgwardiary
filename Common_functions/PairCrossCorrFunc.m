@@ -1,5 +1,21 @@
 function [Aest,lkernelest,g] = PairCrossCorrFunc(r,spikes1,spikes2,s)
 
+% Filename: PairCrossCorrFunc.m
+% Author: Andrew Zammit Mangion
+% Date: February 2011
+% Description: Find the PCCF of two spatial point processes
+%
+% Inputs: r (vector of radial distances to consider)
+%         spikes1 (first point process)
+%         spikes2 (second point process)
+%         length of square describing domain
+%
+% Outputs: Aest (amplitude of fitted GRBF)
+%          lkernelest (kernel width of fitted GRBF)
+%          g (Nonparametric estimate of the PCCF)
+
+
+
 Ntot1 = length(spikes1);
 Ntot2 = length(spikes2);
 g = zeros(1,length(r));
@@ -57,5 +73,6 @@ for i = 1:size(x,1)
 end
 
 function y = kb1(x,b)
+% Epanechnikov kernel
 
 y = 3/(4*b)*(1 - x.^2/b^2).*(abs(x(:,1))<b);

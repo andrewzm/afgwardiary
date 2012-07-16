@@ -1,3 +1,5 @@
+% Trims figures after plotting
+
 function y = TrimFig(scalefactor)
 
 set(gca, 'Position', get(gca, 'OuterPosition') - ...

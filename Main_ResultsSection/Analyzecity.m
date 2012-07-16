@@ -1,5 +1,7 @@
 function Analyzecity(s1star,s2star,lcorner,ucorner,spikeAll,int_lower,int_median,int_upper,ds)
 
+% Plot insets on growth map figure
+
 i=1;
 k=1;
 Weeknum = zeros(floor(length(spikeAll)/7),1);

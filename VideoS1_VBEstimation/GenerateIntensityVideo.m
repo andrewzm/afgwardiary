@@ -61,7 +61,7 @@ end
 
 
 %---------------------------------------
-% MOVIE OF INTENSITY - Miller Projection
+% MOVIE OF INTENSITY
 %---------------------------------------
 Covariates = Thetainfo(m).best(1)*Pop_density + Thetainfo(m).varb(1)*Pop_density.^2/2 ...
     + Thetainfo(m).best(2)*Dist_to_city + Thetainfo(m).varb(2)*Dist_to_city.^2/2;

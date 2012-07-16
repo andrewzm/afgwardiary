@@ -1,5 +1,20 @@
 function [Aest,lkernelest,g] = PairCorrFunc(r,spikes,s)
 
+% Filename: PairCrossCorrFunc.m
+% Author: Andrew Zammit Mangion
+% Date: February 2011
+% Description: Find the PACF of a spatial point process
+%
+% Inputs: r (vector of radial distances to consider)
+%         spikes (spatial point process)
+%         length of square describing domain
+%
+% Outputs: Aest (amplitude of fitted GRBF)
+%          lkernelest (kernel width of fitted GRBF)
+%          g (Nonparametric estimate of the PACF)
+
+
+
 Ntot = length(spikes);
 g = zeros(1,length(r));
 srange = s(end);

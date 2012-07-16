@@ -1,5 +1,7 @@
 function Volume = FindSTVolume(s1,s2,t,GaussKernel,mu)
 
+% Find the volume (numerically) of a 2D GRBF using the vectors s1,s2
+
 Volume = 0;
 dt = mean(diff(t));
 ds1 = mean(diff(s1));

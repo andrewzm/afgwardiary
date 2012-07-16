@@ -1,3 +1,5 @@
+% Draw the AFG map with province boundaries
+
 ax = worldmap([29,39],[60,75]);
 setm(ax,'Grid','off','Frame','off','meridianlabel','off','parallellabel','off')
 set(gcf,'color',[1,1,1])

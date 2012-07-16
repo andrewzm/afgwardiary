@@ -5,7 +5,7 @@
 %           ../Common_functions
 %           AWD_Nonparametric_smooth.mat (contains GRID)
 %           ../AfghanDataAllDay.mat (AWD in Matlab format)
-%           IN.mat (ditised interior mask of Afghanistan)
+%           IN.mat (digitised interior mask of Afghanistan)
 %           mpgwrite (available online)
 
 clear all
@@ -24,7 +24,7 @@ strue2 = s2./scale(2) + shift(2);
 [s1true,s2true] = meshgrid(strue1,strue2);
 
 %---------------------------------------
-% MOVIE OF INTENSITY - Miller Projection
+% MOVIE OF INTENSITY
 %---------------------------------------
 FRMult = 6;
 nframes = size((size(GRID,3)-1)*FRMult);  %Defines length of animation
