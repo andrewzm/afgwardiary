@@ -18,6 +18,7 @@ function GRID = ST_Kernel_estimation(spikes,sigmas1,sigmas2,sigmat,s1,s2,spatcor
          
 GaussKernel = @(s1,s2,t,mu1,mu2,mu3) exp(-((s1-mu1).^2)./(2*sigmas1^2) - ((s2-mu2).^2)./(2*sigmas2^2) -((t-mu3).^2)./(2*sigmat^2));
 
+% Fine grid for numerical integration
 s1_fine = linspace(-3*sigmas1,3*sigmas1,61);
 s2_fine = linspace(-3*sigmas2,3*sigmas2,61);
 t_fine = linspace(-3*sigmat,3*sigmat,1201);
@@ -25,14 +26,16 @@ t_fine = linspace(-3*sigmat,3*sigmat,1201);
 N = length(spikes);
 disp('Calculating default volume...')
 Volume = FindSTVolume(s1_fine,s2_fine,t_fine,GaussKernel,[0 0 0]);
+
+% Initialize
 GRID = zeros(length(s1),length(s2),N);
 [S1,S2] = meshgrid(s1,s2);
 
 if spatcorrection == 'F'
-    
+    % Do not correct at spatial boundaries
     for i = 1:N
         disp(strcat('Smoothing out week ',num2str(i)));
-        spikes(i).Coords(isnan(spikes(i).Coords(:,1)),:) = [];
+        spikes(i).Coords(isnan(spikes(i).Coords(:,1)),:) = []; % Remove NaNs
         
         % Temporal edge correction
         if i <= max(t_fine)
@@ -55,6 +58,7 @@ end
 
 
 if spatcorrection == 'T'
+    % Correct at both space and time boundaries
     for i = 1:N
         disp(strcat('Smoothing out week ',num2str(i)));
         spikes(i).Coords(isnan(spikes(i).Coords(:,1)),:) = [];

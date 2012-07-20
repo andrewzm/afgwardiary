@@ -1,5 +1,5 @@
 % PlotGrowthMap.m
-% Description: Generates Video S1 in paper
+% Description: Generates Fig. 2 and 3 in the main paper
 % Requires: Mapping toolbox
 %           AfghanModelHighResWholePrec_Covariates.mat (results)
 %           IN.mat (digital mask of Afghanistan)
@@ -18,12 +18,13 @@
 clear all
 close all
 
+% Load results from VB-Laplace
 studydata = '../AfghanModelHighResWholePrec_Covariates'; 
 load(studydata)
-mu = Thetainfo(m).muest + Thetainfo(m).varmu/2;
+mu = Thetainfo(m).muest;
 
 
-%Upsample Basis
+%Upsample Basis for higher resolution plotting and setup space
 J2 = 201;
 s = linspace(0,36,J2);
 ds = mean(diff(s));
@@ -37,19 +38,20 @@ Provbounds = shaperead('../Shapefiles/admin2_poly_32.shp','UseGeoCoords',true);
 % IN = inpolygons(s1true(:),s2true(:),Countrybounds.Lon',Countrybounds.Lat');
 load('IN')
 
-%--------------------------------
-%Growth map estimate
-%--------------------------------
+%---------------------------------------------------
+%Growth map estimate - only analyze positive regions
+%--------------------------------------------------
 figure('Position',[100,100,700,600])
-c = flipud(hot);
+c = flipud(hot); % color map
 hold on
 test = sum(multiprod(Basis.phi,reshape(Thetainfo(m).thetaest,1,1,Basis.nx)),3);
 test = test.*(test>0);
-test = reshape(test(:).*IN,size(test));
+test = reshape(test(:).*IN,size(test)); % Ignore components outside AFG
 
 % exp(z_k+1 - z_k) \approx exp(r)
 
-DrawAFGmap
+% Start the plotting
+DrawAFGmap  
 surfm(strue2,strue1,exp(test))
 shading interp
 colormap(c)
@@ -68,9 +70,9 @@ ylabel('Lat','Fontsize',14)
 
 print -dpng -r300 GrowthMap.png
 
-%--------------------------------
-%Predictability map estimate
-%--------------------------------
+%--------------------------------------
+%Predictability/volatility map estimate
+%--------------------------------------
 figure('Position',[100,100,700,600])
 c = flipud(hot);
 hold on
@@ -83,7 +85,7 @@ surfm(strue2,strue1,test)
 
 shading interp
 colormap(c)
-caxis([0.055,0.07])
+caxis([0.055,0.07]) % Only show where sigma2> 0.055 for visual purposes
 h = colorbar('EastOutside')
 set(h,'position',[0.68,0.21,0.03,0.25])
 set(h,'YTick',[]);

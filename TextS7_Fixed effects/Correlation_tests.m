@@ -25,20 +25,22 @@ close all
 clear all
 
 addpath('../Common_functions')
+load('Spatial_Nonparametric')   % Load nonparametric spatial intensity map
 
-load('Spatial_Nonparametric')
-
-min_intensity = 0.01;
+min_intensity = 0.01;   % Treat extremely low intensities as 0 intensity
 ds = mean(diff(s1));
+
+% Load shapefiles
 Countrybounds = shaperead('../Shapefiles/admin1_poly_32.shp','UseGeoCoords',true);
 Provbounds = shaperead('../Shapefiles/admin2_poly_32.shp','UseGeoCoords',true);
-load('IN')
+load('IN') % Load Afghanistan interior mask
 
 % Nonparametric spatial plot
 figure('Position',[100,100,700,400])
 c = flipud(hot);
 GRID = reshape(GRID(:).*IN,size(GRID)); %Only consider places within borders in subsequent analysis
 
+% Plot spatial intensity map
 DrawAFGmap
 surfm(S2,S1,log(GRID))
 shading interp
@@ -47,7 +49,7 @@ colorbar
 caxis([0 12])
 setm(ax,'Grid','on','Frame','on','meridianlabel','on','parallellabel','on','FontSize',14)
 
-% Elevation
+% Check effect of elevation
 figure('Position',[100,100,700,400])
 DrawAFGmap
 [el_im, cmap, el_bounds] = geotiffread('20120408123907_1134450312');
@@ -67,12 +69,12 @@ set(gcf,'PaperPositionMode','auto')
 print -dpng -r300 Elevation_map.png
  
 figure('Position',[100,100,700,400])
-Correlation_examine(900:100:5000,el_im_reduced,GRID,min_intensity)
+Correlation_examine(900:100:5000,el_im_reduced,GRID,min_intensity) % Check only between 900 and 5000m
 xlabel('elevation (m)'); ylabel('log intensity');
 set(gcf,'PaperPositionMode','auto')
 print -dpng -r300 Elevation_corr.png
 
-%Change in elevation
+% Check effect of change in elevation
 figure('Position',[100,100,700,400])
 DrawAFGmap
 el_gradient = atand(gradient(el_im,S2_el,S1_el)/110000);
@@ -89,12 +91,12 @@ print -dpng -r300 Gradient_map.png
 
 
 figure('Position',[100,100,700,400])
-Correlation_examine(0:0.5:20,el_grad_reduced,GRID,min_intensity)
+Correlation_examine(0:0.5:20,el_grad_reduced,GRID,min_intensity) % Only examine between 0 and 20 degrees gradient
 xlabel('gradient (degrees)'); ylabel('log intensity')
 set(gcf,'PaperPositionMode','auto')
 print -dpng -r300 Gradient_corr.png
 
-% Population density
+% Check effect of population density
 Find_pop_density;
 figure('Position',[100,100,700,400])
 DrawAFGmap
@@ -113,8 +115,8 @@ set(gca,'xscale','log')
 set(gcf,'PaperPositionMode','auto')
 print -dpng -r300 PopDensity_corr.png
 
-% Distance to major city
-% Find_dist_to_city;
+% Check effect of distance to major city
+% Find_dist_to_city;  % Uncomment this line to generate Dist_to_city.mat
 load('Dist_to_city')
 figure('Position',[100,100,700,400])
 DrawAFGmap
@@ -135,7 +137,7 @@ set(gcf,'PaperPositionMode','auto')
 print -dpng -r300 Dist_city_corr.png
 
 % Distance to Pakistan border
-% Find_dist_to_Pak();     
+% Find_dist_to_Pak();   % Uncomment this line to generate Dist_to_Pak.mat
 figure('Position',[100,100,700,400])
 load('Dist_to_Pak')
 DrawAFGmap

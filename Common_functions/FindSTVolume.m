@@ -1,6 +1,6 @@
 function Volume = FindSTVolume(s1,s2,t,GaussKernel,mu)
 
-% Find the volume (numerically) of a 2D GRBF using the vectors s1,s2
+% Find the volume (numerically) of a 3D GRBF centred on mu on the domain (s1,s2,t) 
 
 Volume = 0;
 dt = mean(diff(t));

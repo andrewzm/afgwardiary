@@ -13,32 +13,38 @@
 %          multiprod.m (available from MATLAB Exchange)
 %          posdist.m (available from MATLAB Exchange)
 
+% Load results from VB-Laplace
 studydata = '../AfghanModelHighResWholePrec_Covariates'; 
 load(studydata)
-DisturbVar = inv(diag(diag(Thetainfo(m).Meanprecmat)));
+DisturbVar = inv(diag(diag(Thetainfo(m).Meanprecmat))); % Adopt marginal variance (precision is diagonally dominant)
 
-N= 2000;
-xsample2009 = zeros(Basis.nx,52);
-fieldsample2009 = zeros(J,J,52);
-intsample2009 = zeros(J,J,52);
-xsample2010 = zeros(Basis.nx,52);
-fieldsample2010 = zeros(J,J,52);
-intsample2010 = zeros(J,J,52);
+N= 2000;                            % Number of samples
+xsample2009 = zeros(Basis.nx,52);   % Samples for 52 weeks, state in 2009
+fieldsample2009 = zeros(J,J,52);    % Sample field in 2009
+intsample2009 = zeros(J,J,52);      % Sample intensity in 2009
+xsample2010 = zeros(Basis.nx,52);   % Sample state in 2010
+fieldsample2010 = zeros(J,J,52);    % Sample field in 2010
+intsample2010 = zeros(J,J,52);      % Sample intensity in 2010
 
+% Load Provincial Boundaries
 Provbounds = shaperead('../Shapefiles/admin2_poly_32.shp','UseGeoCoords',true);
+
+% Setup space
 strue1 = s./scale(1) + shift(1);
 strue2 = s./scale(2) + shift(2);
 [s1true,s2true] = meshgrid(strue1,strue2);
+
+% Provincial masks
 Provmask = zeros(J^2,length(Provbounds));
 for Pnum = 1:length(Provbounds)
     Provmask(:,Pnum) = inpolygons(s1true(:),s2true(:),Provbounds(Pnum).Lon',Provbounds(Pnum).Lat');
     Provname(Pnum).str = Provbounds(Pnum).PRV_NAME;
 end
-Provintensity2009 = zeros(length(Provbounds),N);
-Count2009 = zeros(length(Provbounds),N);
-Provintensity2010 = zeros(length(Provbounds),N);
-Count2010 = zeros(length(Provbounds),N);
-Growth = zeros(length(Provbounds),N);
+Provintensity2009 = zeros(length(Provbounds),N);    % Provincial intensity in 2009
+Count2009 = zeros(length(Provbounds),N);            % Provincial count in 2009
+Provintensity2010 = zeros(length(Provbounds),N);    % Provincial intensity in 2010
+Count2010 = zeros(length(Provbounds),N);            % Provincial count in 2010
+Growth = zeros(length(Provbounds),N);               % Sample provincial growth
 
 
 % Find population density
@@ -66,9 +72,11 @@ for i = 1:size(s1true,1)
     end
 end
 
+% Fixed effects on intensity field
 Covariates = Thetainfo(m).best(1)*Pop_density + Thetainfo(m).varb(1)*Pop_density.^2/2 ...
                  + Thetainfo(m).best(2)*Dist_to_city + Thetainfo(m).varb(2)*Dist_to_city.^2/2;
 
+% Main Monte Carlo routine for intensity in each province            
 for i = 1:N
     for j = 261:312
         %Sample x
@@ -97,5 +105,7 @@ for i = 1:N
     end
     i
 end
+
+% Save results
 save('GrowthtrialN2000WholePrecWithDistCovariates')
         

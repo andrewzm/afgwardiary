@@ -64,9 +64,11 @@ figure('Position',[10,10,1200,650])
 c = flipud(hot);
 Covariates = Thetainfo(m).best(1)*Pop_density + Thetainfo(m).varb(1)*Pop_density.^2/2 ...
                  + Thetainfo(m).best(2)*Dist_to_city + Thetainfo(m).varb(2)*Dist_to_city.^2/2;
-    
+
+% Plot two intensity maps per year
 for j = 1:12
-    i = (j-1)*26 + 1
+    % i is the week number
+    i = (j-1)*26 + 1;
     subplot(3,4,j)
     yearstr = num2str(2004+floor(i/52));
     [temp,monthstr] = month((i - 52*floor(i/52))*7);
@@ -75,7 +77,8 @@ for j = 1:12
     DrawAFGmap
     hold on
     myintensity = 6.6*exp(mu + Covariates).*exp(sum(multiprod(Basis.phi,reshape(Estinfo(i).xestRTS + diag(Estinfo(i).PRTS)./2,1,1,Basis.nx)),3));
-    myintensity(find(IN == 0))= 0.001;
+    % The 6.6 is due to the scale operations in the warp (2*3.3 = 6.6)
+    myintensity(IN == 0)= 0.001; % Set a minimum for plotting purposes
     
     % log plot
     surfm(s2true,s1true,log10(myintensity))
@@ -83,7 +86,7 @@ for j = 1:12
     myscale = [0.99 300];
     caxis(myscale)
     colormap(c);
-    h=colorbar
+    h=colorbar;
     ticks_wanted=unique([0.1,1,10,100,1000]);
     caxis(log10(myscale))
     set(h,'YTick',log10(ticks_wanted));
@@ -93,7 +96,7 @@ for j = 1:12
     set(gca,'XTick',[])
     set(gca,'YTick',[])
 end
-h = colorbar
+h = colorbar;
 ticks_wanted=unique([1,10,100,1000]);
 caxis(log10(myscale))
 set(h,'YTick',log10(ticks_wanted));

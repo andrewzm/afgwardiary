@@ -14,13 +14,15 @@ function [Aest,lkernelest,g] = PairCorrFunc(r,spikes,s)
 %          g (Nonparametric estimate of the PACF)
 
 
-
+% Initialization
 Ntot = length(spikes);
 g = zeros(1,length(r));
 srange = s(end);
 fintest = @(s) Ntot/srange^2*ones(size(s,1),1);
 b = 1;
 ktype = 'RBF';
+
+% Start estimation over radii points in vector r
 for i = 1:length(r) 
     mysum = 0;
     for j = 1:length(spikes)
@@ -32,13 +34,13 @@ for i = 1:length(r)
     g(i) = 1/(2*pi*r(i))*mysum/(s(end)^2);
 end
 
-%Inference
+%Estimation
 epsilon = r(1); %lower limit
 a0 = 5; %upper limit
 [Aest,lkernelest] = MethodContrast(r,g,ktype,epsilon,a0);
 
 function w = findpercentage(x,y,s1,s2,a,b)
-
+% Correction for circle not being completely within square boundary.
 w = zeros(size(x,1),1);
 Npoints = 50;
 for i = 1:size(x,1)
@@ -71,5 +73,5 @@ for i = 1:size(x,1)
 end
 
 function y = kb1(x,b)
-
+% Epanechnikov kernel
 y = 3/(4*b)*(1 - x.^2/b^2).*(abs(x(:,1))<b);

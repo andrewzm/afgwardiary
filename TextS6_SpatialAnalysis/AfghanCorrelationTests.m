@@ -27,7 +27,7 @@ load('../AfghanDataAllDay')
 % Arrange into weeks
 numofweeks = ceil(length(spikeAll)/7);
 Weeknum = zeros(numofweeks,1);
-shift = [57.5,28.5];
+shift = [57.5,28.5];  % Scale and shift so AFG roughly fits into a 36 x 36 square with bottom LH corner on origin
 scale = [2,3.3];
 i=1;
 k=1;
@@ -62,6 +62,7 @@ for i = 1:N
     i
 end
 
+%Pair cross-correlation estimator
 Acrossest = zeros(N,1);
 lkernelcrossest = zeros(N,1);
 gcrossest = zeros(length(r),N);
@@ -73,6 +74,7 @@ end
 save(filename)
 
 function spikes = CleanfromNans(spikes)
+% Remove NaNs from events in dataset
 k=1;
 if ~isempty(spikes)
     while k <= size(spikes,1)
@@ -85,6 +87,8 @@ if ~isempty(spikes)
 end
 
 function spikes = CleanOutliers(spikes)
+% Create a rough polygon around AFG from which to exclude spikes (this
+% function may be replaced with inpolygon for more accurate removal)
 k=1;
 if ~isempty(spikes)
     while k <= size(spikes,1)

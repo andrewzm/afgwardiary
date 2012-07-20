@@ -1,3 +1,4 @@
+% Find population density
 Afg_pop = shaperead('../Shapefiles/afg_population_CSO_2011_2012','UseGeoCoords',true);
 Pop_density = zeros(size(GRID));
 for i = 1:length(Afg_pop)

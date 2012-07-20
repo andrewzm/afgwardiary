@@ -49,7 +49,7 @@ set(gca,'YTick',[])
 set(gcf,'PaperPositionMode','auto')
 print -dpng -r600  BasisPlacement.png
 
-load('../AfghanModelN121_2011_03_31HighResNoPrec');
+load('../AfghanModelHighResWholePrec_Covariates');
 figure('Position',[100,100,600,400])
 h = axes('Position',[0 0 1 1],'Visible','off');
 axes('Position',[.1 .1 .9 .9])

@@ -15,13 +15,12 @@
 clear all
 close all
 
+% Load results
 studydata = '../AfghanModelHighResWholePrec_Covariates';
-
 load(studydata)
-mu = Thetainfo(m).muest + Thetainfo(m).varmu/2;
+mu = Thetainfo(m).muest;
 
-
-%Upsample Basis
+%Upsample Basis for better resolution and setup space
 s = linspace(0,36,201);
 ds = mean(diff(s));
 [s1,s2] = meshgrid(s);
@@ -63,8 +62,10 @@ end
 %---------------------------------------
 % MOVIE OF INTENSITY
 %---------------------------------------
+% Find fixed effects
 Covariates = Thetainfo(m).best(1)*Pop_density + Thetainfo(m).varb(1)*Pop_density.^2/2 ...
     + Thetainfo(m).best(2)*Dist_to_city + Thetainfo(m).varb(2)*Dist_to_city.^2/2;
+% Multiple frames for decreased frame rate
 FRMult = 6;
 nframes = size((length(Estinfo)-1)*FRMult);  %Defines length of animation
 M = moviein(nframes); close
@@ -77,12 +78,12 @@ f1 = figure;
 set(f1, 'Position', [0 60 screen_size(3)-200 screen_size(4) ] );
 weekinter = 365/7;
 for i = 2:length(Estinfo)-1
-    
     DrawAFGmap
     i
     hold on
     myintensity = 6.6*exp(mu + Covariates).*exp(sum(multiprod(Basis.phi,reshape(Estinfo(i).xestRTS + diag(Estinfo(i).PRTS)./2,1,1,Basis.nx)),3));
-    myintensity(IN == 0)= 0.001;
+    % The 6.6 is a result of the affine warping (2*3.3 = 6.6)
+    myintensity(IN == 0)= 0.001; % Lower bound for plotting purposes
     
     % log plot
     surfm(s2true,s1true,log10(myintensity))
@@ -103,7 +104,7 @@ for i = 2:length(Estinfo)-1
     mystr = ['\bf ',monthstr,' ',yearstr];
     textm(38.4,61,mystr,'FontSize',20);
     points = [spikeAllWeekData(i).Coords(:,1)/scale(1)+shift(1) spikeAllWeekData(i).Coords(:,2)/scale(2) + shift(2)];
-    Inpoints = inpolygon(points(:,1),points(:,2),Countrybounds.Lon',Countrybounds.Lat');
+    Inpoints = inpolygon(points(:,1),points(:,2),Countrybounds.Lon',Countrybounds.Lat'); % Only consider points inside AFG
     if sum(Inpoints == 0) > 0
         points(Inpoints == 0,:) = [];
     end
@@ -124,6 +125,7 @@ for i = 2:length(Estinfo)-1
     Thisframe = getframe(gcf);
     Editedframe = Thisframe;
    
+    % Shift frame horizontally
     Editedframe.cdata(:,:,1) = circshift(Thisframe.cdata(:,:,1),[0,-50]);
     Editedframe.cdata(:,:,2) = circshift(Thisframe.cdata(:,:,2),[0,-50]);
     Editedframe.cdata(:,:,3) = circshift(Thisframe.cdata(:,:,3),[0,-50]);

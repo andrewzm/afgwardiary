@@ -10,15 +10,16 @@
 
 clear all
 close all
-
 addpath('../Common_functions')
 
+% Load shapefiles
 Countrybounds = shaperead('../Shapefiles/admin1_poly_32.shp','UseGeoCoords',true);
 Provbounds = shaperead('../Shapefiles/admin2_poly_32.shp','UseGeoCoords',true);
 
-
+% Load nonparametric intensity map
 load('AWD_Nonparametric_smooth')
 
+% Reverse warping (this going back and forth is not necessary...)
 strue1 = s1./scale(1) + shift(1);
 strue2 = s2./scale(2) + shift(2);
 [s1true,s2true] = meshgrid(strue1,strue2);
@@ -26,7 +27,7 @@ strue2 = s2./scale(2) + shift(2);
 %---------------------------------------
 % MOVIE OF INTENSITY
 %---------------------------------------
-FRMult = 6;
+FRMult = 6; %Repeat frames for slower speed
 nframes = size((size(GRID,3)-1)*FRMult);  %Defines length of animation
 M = moviein(nframes); close
 c = flipud(hot(1024));
@@ -44,8 +45,8 @@ for i = 2:size(GRID,3)-1
     DrawAFGmap
     i
     hold on
-    myintensity = 6.6*GRID(:,:,i);
-    myintensity(IN == 0)= 0.001;
+    myintensity = 6.6*GRID(:,:,i); % The 6.6 is because the intensity was estimated on a warped surface (2.2*3 = 6.6)
+    myintensity(IN == 0)= 0.001; % Lower bound for plotting purposes
    
     % log plot
     surfm(s2true,s1true,log10(myintensity))
@@ -90,6 +91,7 @@ for i = 2:size(GRID,3)-1
     Thisframe = getframe(gcf);
     Editedframe = Thisframe;
     
+    % Shift frame horizontally
     Editedframe.cdata(:,:,1) = circshift(Thisframe.cdata(:,:,1),[0,-50]);
     Editedframe.cdata(:,:,2) = circshift(Thisframe.cdata(:,:,2),[0,-50]);
     Editedframe.cdata(:,:,3) = circshift(Thisframe.cdata(:,:,3),[0,-50]);
@@ -99,9 +101,9 @@ for i = 2:size(GRID,3)-1
     count = count+FRMult;
     pause(0.1)
     colorbar off
-    i
 end
 save movie.mat M
-% mov=close(mov); % closes the mov  
+
+% Save mpg
 mpgwrite(M,jet,'./KEIntensity.mpg'); % Convert the movie to MPEG format 
 

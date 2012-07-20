@@ -12,12 +12,13 @@
 %           Levenetest.m (Available from Matlab Exchange)
 
 clear all
+% Load dataset
 load('../AfghanDataAllDay')
 
 %Sort into weeks
 numofweeks = ceil(length(spikeAll)/7);
 Weeknum = zeros(numofweeks,1);
-shift = [57.5,28.5];
+shift = [57.5,28.5]; % Shift and scale to warp Afghanistan into roughly a 36 x 36 square
 scale = [2,3.3];
 i=1;
 k=1;
@@ -38,9 +39,9 @@ while i < length(spikeAll)
    k = k+1;
 end
 
-Weeknum(end) = [];
+Weeknum(end) = []; % Incomplete final week
 
-% Time series
+% Plot time series
 figure('Position',[100,100,750,350])
 plot(Weeknum,'k')
 hold on 
@@ -64,7 +65,7 @@ end
 subplot(2,1,1)
 histfit(Stat)
 %Here we notice there are a lot of outliers - and we remove those noisy
-%values
+%values. A strict outlier test might be adequate here.
 i=1;
 j=1;
 indexremoved = [];
@@ -103,7 +104,7 @@ set(gcf,'PaperPositionMode','auto')
 print -dpng -r600  ../../Figures/NormTest2.png
 
 
-%Levene Test
+%Levene Test for homoscedasticity
 Year1 = Stat(1:52 - length(find((indexremoved >= 1) & (indexremoved <= 52))))';
 i = length(Year1);
 Year2 = Stat(i+1 : i+52 - length(find((indexremoved >= 53) & (indexremoved <= 104))))';
@@ -124,7 +125,7 @@ Year4 = [Year4 4*ones(length(Year4),1)];
 Year5 = [Year5 5*ones(length(Year5),1)];
 Year6 = [Year6 6*ones(length(Year6),1)];
 X = [Year1;Year2;Year3;Year4;Year5;Year6];
-Levenetest(X,0.05)
+Levenetest(X,0.05) % Rejects
 
 %ONLY LAST 4 YEARS
 Year3(:,2) = 1*ones(length(Year3),1);
@@ -132,9 +133,9 @@ Year4(:,2) = 2*ones(length(Year4),1);
 Year5(:,2) = 3*ones(length(Year5),1);
 Year6(:,2) = 4*ones(length(Year6),1);
 X = [Year3;Year4;Year5;Year6];
-Levenetest(X,0.05)
+Levenetest(X,0.05) % Fails to reject
 
-%MLE of variance (see stochastic volatility models)
+%MLE of variance (see any text on stochastic volatility models)
 MyData = Weeknum(104:end);
 N = length(MyData);
 Sigma2MLE = sum(log(MyData(2:end))-log(MyData(1:end-1)))/N - (log(MyData(end) - log(MyData(1))))^2/(N^3);

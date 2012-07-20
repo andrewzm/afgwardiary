@@ -20,8 +20,8 @@ load('CorrelationTests')
 J = 101;
 s = linspace(0,36,J);
 ds = (max(s)-min(s))/(J-1);
-l=5;         %length of basis functions
-smax = s(end)-l; %These are spatial limits on basis representation
+l=5;                % support length of basis functions
+smax = s(end)-l;    % These are spatial limits on basis representation
 smin = l;
 [s1,s2] = meshgrid(s,s);
 
@@ -37,7 +37,8 @@ ObservedCovMean = Anoptim*gaussf(s1,s2,mu1,mu2,lnoptim,lnoptim);
 [Akoptim,lkoptim] = MethodContrast(r(3:end),exp(mean(log(gcrossest(3:end,2:end)),2)),'RBF',r(3),r(end));
 ObservedCrossCovMean = Akoptim*gaussf(s1,s2,mu1,mu2,lkoptim,lkoptim);
 
-%Nonparametric estimation of IDE Kernel using deconvolution
+%Nonparametric estimation of IDE Kernel using deconvolution with some
+%regularization
 Kernelest = real(deconvwnr(ObservedCrossCovMean,ObservedCovMean,0.0000001))/ds^2;
 
 %Parametric reduction

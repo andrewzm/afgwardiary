@@ -1,5 +1,7 @@
+% Find distance to city
 Afg_cities = shaperead('Settlements/07_03_settlements','UseGeoCoords',true);
 Filtered_cities = 0; j =1;
+% Only consider "important" cities
 for i = 1:length(Afg_cities)
    if Afg_cities(i).TYPE == 2 ||  Afg_cities(i).TYPE == 3
        Filtered_cities(j,1) = Afg_cities(i).LON;

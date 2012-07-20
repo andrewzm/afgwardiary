@@ -1,3 +1,6 @@
+% Generate the lower, median and upper quantiles from the VB-Laplace
+% results
+
 % Find population density
 Afg_pop = shaperead('../Shapefiles/afg_population_CSO_2011_2012','UseGeoCoords',true);
 Pop_density = zeros(size(s1));
@@ -23,8 +26,11 @@ for i = 1:size(s1true,1)
     end
 end
 
+% Initialize
 Uest = zeros(J2,J2,N); Umedian = zeros(J2,J2,N); Uupper = zeros(J2,J2,N); Ulower = zeros(J2,J2,N);
 intensityest = zeros(J2,J2,N); int_median = zeros(J2,J2,N); int_upper = zeros(J2,J2,N); int_lower  = zeros(J2,J2,N);
+
+% Find required quantiles
 for i = 1:N
     Uest(:,:,i) = sum(multiprod(Basis.phi,reshape(Estinfo(i).xestRTS+diag(Estinfo(i).PRTS)./2,1,1,Basis.nx)),3);
     Umedian(:,:,i) = sum(multiprod(Basis.phi,reshape(Estinfo(i).xestRTS,1,1,Basis.nx)),3);
@@ -40,4 +46,5 @@ for i = 1:N
     int_lower(:,:,i) = exp(mu + Covariates+Ulower(:,:,i));
 end
 
+% Save data (only needs to be run once per set of results)
 save('Quantile_data','int_lower','int_median','int_upper','intensityest')

@@ -1,7 +1,7 @@
 function [phi] = LocalisedKernelPhi(s1,s2,mu1,mu2,sigma21,sigma22)
 
 % Evaluate the CGRBF centred on (mu1,mu2) with stds (sigma21,sigma22) on
-% vectors (s1,s2).
+% meshgrid arrays (s1,s2).
 
 s1 = s1(1,:);
 s2 = s2(:,1);
@@ -13,10 +13,10 @@ for i = 1:nx
     beta2 = sqrt(pi/sigma22(i));
     l1 = 2*pi/beta1;
     l2 = 2*pi/beta2;
-  [~,ilow1] = min(abs(s1 - (mu1(i) - l1)));  %Find centre of kernel
-  [~,ihigh1] = min(abs(s1 - (mu1(i) + l1)));  %Find centre of kernel
-  [~,ilow2] = min(abs(s2 - (mu2(i) - l2)));  %Find centre of kernel
-  [~,ihigh2] = min(abs(s2 - (mu2(i) + l2)));  %Find centre of kernel
+  [~,ilow1] = min(abs(s1 - (mu1(i) - l1)));  %Find limit of kernel
+  [~,ihigh1] = min(abs(s1 - (mu1(i) + l1)));  %Find limit of kernel
+  [~,ilow2] = min(abs(s2 - (mu2(i) - l2)));  %Find limit of kernel
+  [~,ihigh2] = min(abs(s2 - (mu2(i) + l2)));  %Find limit of kernel
   s_on1 = s1(ilow1:ihigh1);
   s_on2 = s2(ilow2:ihigh2);
   [Delta1,Delta2] = meshgrid(beta1*abs(s_on1 - mu1(i)),beta2*abs(s_on2 - mu2(i)));
